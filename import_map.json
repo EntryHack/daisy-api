@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "@trpc/server": "https://esm.sh/@trpc/server@10.32.0",
+    "@trpc/server/": "https://esm.sh/@trpc/server@10.32.0/",
+    "dotenv": "https://deno.land/std@0.192.0/dotenv/mod.ts",
+    "http": "https://deno.land/std@0.192.0/http/server.ts",
+    "zod": "https://esm.sh/zod@3.21.4"
+  }
+}
