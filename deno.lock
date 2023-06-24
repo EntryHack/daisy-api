@@ -138,6 +138,10 @@
     "https://deno.land/std@0.192.0/dotenv/load.ts": "0636983549b98f29ab75c9a22a42d9723f0a389ece5498fe971e7bb2556a12e2",
     "https://deno.land/std@0.192.0/dotenv/mod.ts": "f5a8123741d1561ae8184a7f043bc097b15132c5171c651142b804b6dbc21853",
     "https://deno.land/std@0.192.0/http/server.ts": "1b23463b5b36e4eebc495417f6af47a6f7d52e3294827a1226d2a1aab23d9d20",
+    "https://deno.land/x/another_cookiejar@v5.0.3/cookie.ts": "2be7548d01a3a9df97deb187761a843a77fd824057478919abf1e1e89ae1eb2e",
+    "https://deno.land/x/another_cookiejar@v5.0.3/cookie_jar.ts": "e47d7b2c608bcd9600fd26825b600946f16ae167216cea71935049188d2fc6d1",
+    "https://deno.land/x/another_cookiejar@v5.0.3/fetch_wrapper.ts": "9d82648195533c58490d462cc4566edc16b9ce06e695a8043160785df5e0d6a0",
+    "https://deno.land/x/another_cookiejar@v5.0.3/mod.ts": "eff949014965771f2cd447fe78625a1ad28b59333afa40640f02c0922534d89a",
     "https://deno.land/x/bcrypt@v0.4.1/mod.ts": "ff09bdae282583cf5f7d87efe37ddcecef7f14f6d12e8b8066a3058db8c6c2f7",
     "https://deno.land/x/bcrypt@v0.4.1/src/bcrypt/base64.ts": "b8266450a4f1eb6960f60f2f7986afc4dde6b45bd2d7ee7ba10789e67e17b9f7",
     "https://deno.land/x/bcrypt@v0.4.1/src/bcrypt/bcrypt.ts": "ec221648cc6453ea5e3803bc817c01157dada06aa6f7a0ba6b9f87aae32b21e2",
@@ -242,5 +246,21 @@
     "https://esm.sh/v126/@trpc/server@10.32.0/denonext/adapters/fetch.js": "9064a9eca4e85ff9f992ace03a66aca38bf52eb652646fd541f6fd19af941518",
     "https://esm.sh/v126/@trpc/server@10.32.0/denonext/server.mjs": "42e02387a50f4bf4dffe6ff3b6f54663cee5c10ecfdc9f72acbde8c0bd3f19b4",
     "https://esm.sh/zod@3.21.4": "5466ca9e4b162fa1f2f6c9f529f2a2b5691f43ce8e759902f453d51117057e18"
+  },
+  "npm": {
+    "specifiers": {
+      "@trpc/server": "@trpc/server@10.29.1",
+      "zod": "zod@3.21.4"
+    },
+    "packages": {
+      "@trpc/server@10.29.1": {
+        "integrity": "sha512-kNXgMh5ya+awuz2tB4eIyVrRs7nVtqGXwSGabzH3l5ZLWz7rbKJquOJ7h6bjvIfWUpaFG62HJNWxxGUtXCRgRw==",
+        "dependencies": {}
+      },
+      "zod@3.21.4": {
+        "integrity": "sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==",
+        "dependencies": {}
+      }
+    }
   }
 }
