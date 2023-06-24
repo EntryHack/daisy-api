@@ -1,10 +1,10 @@
 import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
-import stickers from '~/stickers/stickers.json' assert { type: 'json' };
-import { graphql } from '~/lib/graphql.ts';
+import stickers from './stickers/stickers.json' assert { type: 'json' };
+import { graphql } from './lib/graphql.ts';
 
 stickers.sort((a, b) => a.date - b.date);
-const { middleware, procedure, router } = initTRPC.create();
+const { procedure, router } = initTRPC.create();
 
 export const appRouter = router({
   getStickers: procedure

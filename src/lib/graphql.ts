@@ -1,4 +1,4 @@
-import { wrapFetch } from 'https://deno.land/x/another_cookiejar@v5.0.3/fetch_wrapper.ts';
+import { wrapFetch } from 'another_cookiejar';
 
 const _csrfToken: { value?: string; updated: number } = { updated: 0 };
 

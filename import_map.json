@@ -1,6 +1,5 @@
 {
   "imports": {
-    "~/": "./src/",
     "@trpc/server": "https://esm.sh/@trpc/server@10.32.0",
     "@trpc/server/": "https://esm.sh/@trpc/server@10.32.0/",
     "another_cookiejar": "https://deno.land/x/another_cookiejar@v5.0.3/mod.ts",
