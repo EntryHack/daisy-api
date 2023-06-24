@@ -1,5 +1,5 @@
 import { initTRPC } from '@trpc/server';
-import z from 'npm:zod';
+import { z } from 'zod';
 import stickers from '~/stickers/stickers.json' assert { type: 'json' };
 import { graphql } from '~/lib/graphql.ts';
 
