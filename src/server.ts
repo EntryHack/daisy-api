@@ -1,6 +1,6 @@
 import { load } from 'dotenv';
 import { serve } from 'http';
-import { fetchRequestHandler } from 'npm:@trpc/server/adapters/fetch';
+import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 import { type AppRouter, appRouter } from '~/router.ts';
 import { getCSRFToken } from '~/lib/graphql.ts';
 
