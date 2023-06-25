@@ -1,6 +1,6 @@
 import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
-import stickers from './stickers/stickers.json' assert { type: 'json' };
+import stickers from './stickers/stickers.ts';
 import { graphql } from './lib/graphql.ts';
 
 stickers.sort((a, b) => a.date - b.date);
@@ -42,7 +42,10 @@ export const appRouter = router({
         return prev;
       }, {} as { [key: string]: string });
 
-      const pageStickers: (Omit<typeof stickers[number], 'authors'> & {
+      const pageStickers: (Omit<
+        typeof stickers[number],
+        'authors' | 'images'
+      > & {
         authors: { id: string; name: string }[];
       })[] = stickers
         .slice((page - 1) * display, page * display)
@@ -53,6 +56,7 @@ export const appRouter = router({
               id: author,
               name: nicknames[author],
             })),
+            images: undefined,
           };
         });
 
@@ -70,12 +74,12 @@ export const appRouter = router({
           return `$id${author}: String`;
         })
         .join(', ')}) {
-  ${authors
-    .map((author) => {
-      return `id${author}: userstatus(id: $id${author}) { nickname }`;
-    })
-    .join('\n  ')}
-}`;
+    ${authors
+      .map((author) => {
+        return `id${author}: userstatus(id: $id${author}) { nickname }`;
+      })
+      .join('\n  ')}
+  }`;
 
       const data = await graphql<{ [key: string]: { nickname: string } }>(
         query,
