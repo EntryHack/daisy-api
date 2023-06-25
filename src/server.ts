@@ -27,7 +27,7 @@ const port = parseInt(Deno.env.get('PORT') ?? '4000');
 
 await getCSRFToken();
 
-serve(
+/*serve(
   (req) =>
     handler(req).then((res: Response) => {
       if (allowedOrigins.includes(req.headers.get('Origin')!)) {
@@ -40,4 +40,4 @@ serve(
       return res;
     }),
   { port },
-);
+);*/
