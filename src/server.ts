@@ -7,6 +7,7 @@ import { getCSRFToken } from './lib/graphql.ts';
 const allowedOrigins = [
   'http://localhost:3000',
   'http://127.0.0.1:3000',
+  'http://172.30.1.42:3000',
   'https://daisy.lol',
 ];
 
