@@ -25,9 +25,9 @@ function handler(req: Request) {
 if (!Deno.env.get('DENO_DEPLOYMENT_ID')) await load({ export: true });
 const port = parseInt(Deno.env.get('PORT') ?? '4000');
 
-await getCSRFToken();
+/*await getCSRFToken();
 
-/*serve(
+serve(
   (req) =>
     handler(req).then((res: Response) => {
       if (allowedOrigins.includes(req.headers.get('Origin')!)) {
