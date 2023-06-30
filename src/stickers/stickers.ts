@@ -11,9 +11,7 @@ const stickers = [
     authors: [
       '60bc5559659bf40bd15d022c',
       '626b764888d5c90037c7d27a',
-      '59bd6973deeddd381b824a2e',
       '59b3cb5f13fd44de583de32b',
-      '61ee2207650745006e772faf',
       '62f4c92d98f069010a9cc914',
       '5eb4ff2d223e9e00566a4384',
     ],
