@@ -1,10 +1,10 @@
 {
   "imports": {
-    "@trpc/server": "https://esm.sh/@trpc/server@10.32.0",
-    "@trpc/server/": "https://esm.sh/@trpc/server@10.32.0/",
+    "@trpc/server": "https://esm.sh/@trpc/server@10.34.0",
+    "@trpc/server/": "https://esm.sh/@trpc/server@10.34.0/",
     "another_cookiejar": "https://deno.land/x/another_cookiejar@v5.0.3/mod.ts",
-    "dotenv": "https://deno.land/std@0.192.0/dotenv/mod.ts",
-    "http": "https://deno.land/std@0.192.0/http/server.ts",
-    "zod": "https://deno.land/x/zod@v3.21.4/mod.ts"
+    "dotenv": "https://deno.land/std@0.193.0/dotenv/mod.ts",
+    "http": "https://deno.land/std@0.193.0/http/server.ts",
+    "zod": "https://esm.sh/zod@v3.21.4"
   }
 }
