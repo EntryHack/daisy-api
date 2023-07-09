@@ -106,6 +106,20 @@ export const appRouter = router({
 
       return pageSticker;
     }),
+  getNickname: procedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input: { id } }) => {
+      const data = await graphql<{ id: { nickname: string } }>(
+        'id: userstatus(id: $id) { nickname }',
+        {
+          id,
+        },
+      );
+
+      console.log(data);
+
+      return 'test';
+    }),
 });
 
 export type AppRouter = typeof appRouter;
