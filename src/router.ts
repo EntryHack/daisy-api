@@ -109,16 +109,18 @@ export const appRouter = router({
   getNickname: procedure
     .input(z.object({ id: z.string() }))
     .query(async ({ input: { id } }) => {
-      const data = await graphql<{ id: { nickname: string } }>(
-        'id: userstatus(id: $id) { nickname }',
+      const data = await graphql<{ id?: { nickname: string } }>(
+        `query ($id: String) {
+  id: userstatus(id: $id) {
+    nickname
+  }
+}`,
         {
           id,
         },
       );
 
-      console.log(data);
-
-      return 'test';
+      return data.id?.nickname;
     }),
 });
 
