@@ -66,7 +66,7 @@ export const appRouter = router({
     .input(z.object({ id: z.string() }))
     .query(async ({ input: { id } }) => {
       const sticker = stickers.find((sticker) => sticker.id === id);
-      if (!sticker) throw new Error('Sticker not found');
+      if (!sticker) return undefined;
 
       const authors = [...new Set(sticker.authors)];
       const query = `query (${authors
