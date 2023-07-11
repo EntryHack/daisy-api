@@ -139,7 +139,7 @@ export const appRouter = router({
 
     const { _id: id, imageType, filename } = json;
 
-    return { id, filename: `${filename}.${imageType}` };
+    return { id, filename: `${filename}.${imageType}` } as { id: string; filename: string };
   }),
 });
 
