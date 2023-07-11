@@ -1,41 +1,72 @@
-import { wrapFetch } from 'another_cookiejar';
+import { cookieJar, originalFetch } from "./fetch.ts";
 
-const _csrfToken: { value?: string; updated: number } = { updated: 0 };
+const _tokens: { csrfToken?: string; xToken?: string; updated: number } = {
+  updated: 0,
+};
 
 type Variables = {
   [key: string]: string | number | boolean | Variables;
 };
 
-const fetch = wrapFetch();
+export async function getTokens() {
+  if (Date.now() - _tokens.updated <= 1000 * 60 * 60 * 3) return _tokens;
 
-export async function getCSRFToken() {
-  if (Date.now() - _csrfToken.updated <= 1000 * 60 * 60 * 3)
-    return _csrfToken.value;
+  const username = Deno.env.get("USERNAME");
+  const password = Deno.env.get("PASSWORD");
 
-  console.log('Updating CSRF Token!');
+  console.log("Updating tokens!");
 
-  const res = await fetch('https://playentry.org');
+  const res = await fetch("https://playentry.org");
   const text = await res.text();
 
-  _csrfToken.value =
-    (/<meta[^>]*?content=(["\'])?((?:.(?!\1|>))*.?)\1?/.exec(text) ?? [])[2] ??
-    '';
-  _csrfToken.updated = Date.now();
+  const __NEXT_DATA__ = /\<script id="__NEXT_DATA__".*\>((.|\n)+)\<\/script\>/.exec(text)?.[1];
+  if (!__NEXT_DATA__) return _tokens;
 
-  return _csrfToken.value;
+  const parsedData = JSON.parse(__NEXT_DATA__);
+
+  const csrfToken = parsedData.props.initialProps.csrfToken;
+  const xToken = parsedData.props.initialState.common.user?.xToken;
+
+  if (!xToken) {
+    const res = await fetch("https://playentry.org/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(csrfToken && { "CSRF-Token": csrfToken }),
+      },
+      body: JSON.stringify({
+        query: `mutation ($username: String!, $password: String!) {
+        signin: signinByUsername(username: $username, password: $password, rememberme: true) {
+          id
+          username
+          nickname
+        }
+      }`,
+        variables: { username, password },
+      }),
+    });
+    const json = await res.json();
+    if (!res.ok) return _tokens;
+    if (!json.data.signin) return _tokens;
+    return getTokens();
+  }
+
+  _tokens.csrfToken = csrfToken;
+  _tokens.xToken = xToken;
+  _tokens.updated = Date.now();
+
+  return _tokens;
 }
 
-export async function graphql<T>(
-  query: string,
-  variables: Variables,
-): Promise<T> {
-  const csrfToken = await getCSRFToken();
+export async function graphql<T>(query: string, variables: Variables): Promise<T> {
+  const tokens = await getTokens();
 
-  const res = await fetch('https://playentry.org/graphql', {
-    method: 'POST',
+  const res = await fetch("https://playentry.org/graphql", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      ...(csrfToken && { 'CSRF-Token': csrfToken }),
+      "Content-Type": "application/json",
+      ...(tokens.csrfToken && { "csrf-token": tokens.csrfToken }),
+      ...(tokens.xToken && { "x-token": tokens.xToken }),
     },
     body: JSON.stringify({ query, variables }),
   });
