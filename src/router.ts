@@ -111,7 +111,7 @@ export const appRouter = router({
 
     return data.id?.nickname;
   }),
-  uploadImage: procedure.input(z.object({ image: z.string() })).query(async ({ input: { image } }) => {
+  uploadImage: procedure.input(z.object({ image: z.string() })).mutation(async ({ input: { image } }) => {
     const tokens = await getTokens();
 
     const parsedData = /^data:(image\/[a-zA-Z_0-9+]+);base64,(.*)/.exec(image);
