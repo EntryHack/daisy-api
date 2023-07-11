@@ -137,7 +137,9 @@ export const appRouter = router({
     });
     const json = await res.json();
 
-    console.log(json);
+    const { _id: id, imageType, filename } = json;
+
+    return { id, filename: `${filename}.${imageType}` };
   }),
 });
 
